@@ -17,7 +17,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Call
 import retrofit2.Response
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(MockitoJUnitRunner.Silent::class)
 class PostPresentationTest {
     @Mock
     private lateinit var mockView: PostView
@@ -41,7 +41,7 @@ class PostPresentationTest {
         themPostRenderers(resultList)
     }
 
-    fun themPostRenderers(resultList: List<PostModel>) {
+    private fun themPostRenderers(resultList: List<PostModel>) {
         val captor = argumentCaptor<List<PostViewModel>>()
         verify(mockView).drawPost(captor.capture())
 
@@ -51,7 +51,7 @@ class PostPresentationTest {
         }
     }
 
-    fun givenPosts(resultList: List<PostModel>) {
+    private fun givenPosts(resultList: List<PostModel>) {
         val mockCall = Mockito.mock(Call::class.java) as Call<List<PostModel>>
         val mockResponse = Mockito.mock(Response::class.java) as Response<List<PostModel>>
         whenever(mockCall.execute()).thenReturn(mockResponse)
