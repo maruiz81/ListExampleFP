@@ -8,7 +8,7 @@ import arrow.data.flatMap
 import arrow.data.map
 import maruiz.com.listexamplefp.data.model.PostModel
 import maruiz.com.listexamplefp.di.context.PostContext
-import maruiz.com.listexamplefp.domain.getPostsUseCase
+import maruiz.com.listexamplefp.domain.GetPostUseCase
 import maruiz.com.listexamplefp.presentation.view.model.PostPresentationModel
 
 class PostViewModel : ViewModel() {
@@ -27,7 +27,7 @@ class PostViewModel : ViewModel() {
 
     fun getPosts(): Reader<PostContext, Unit> =
             ReaderApi.ask<PostContext>().flatMap {
-                getPostsUseCase().map {
+                GetPostUseCase().map {
                     it.unsafeRunAsync {
                         it.fold(::handleError, ::handleSuccess)
                     }
