@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.post_row.view.*
 import maruiz.com.listexamplefp.R
-import maruiz.com.listexamplefp.presentation.view.viewmodel.PostViewModel
+import maruiz.com.listexamplefp.presentation.view.model.PostPresentationModel
 
-class PostAdapter(var posts: List<PostViewModel> = emptyList()) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+class PostAdapter(var posts: List<PostPresentationModel> = emptyList()) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.post_row, parent, false))
 
@@ -19,7 +19,7 @@ class PostAdapter(var posts: List<PostViewModel> = emptyList()) : RecyclerView.A
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(post: PostViewModel) {
+        fun bind(post: PostPresentationModel) {
             with(post) {
                 itemView.title.text = post.title
                 itemView.body.text = post.body
