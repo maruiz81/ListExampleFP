@@ -7,8 +7,8 @@ import maruiz.com.listexamplefp.data.model.PostModel
 import maruiz.com.listexamplefp.di.context.PostContext
 
 fun getPostsUseCase(): Reader<PostContext, IO<List<PostModel>>> =
-        PostSource.fetchPosts().flatMap { postList ->
-            ReaderApi.ask<PostContext>().map { ctx ->
+        ReaderApi.ask<PostContext>().flatMap { ctx ->
+            PostSource.fetchPosts().map { postList ->
                 ctx.backgroundRunner(postList)
             }
         }
